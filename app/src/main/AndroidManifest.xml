@@ -22,7 +22,7 @@
             android:name=".confirm_pin"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".home"
             android:exported="false" />
         <activity
             android:name=".name"
