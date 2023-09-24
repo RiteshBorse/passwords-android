@@ -25,14 +25,13 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/logo"
             android:layout_centerInParent="true"
-            android:layout_centerHorizontal="true"
             android:layout_marginTop="5dp"
             android:background="@drawable/text_background"
             android:hint="Set Pin"
-            android:paddingLeft="20dp"
-            android:textColorHint="@color/black"
             android:inputType="numberPassword"
-            android:maxLength="4"/>
+            android:maxLength="4"
+            android:paddingLeft="20dp"
+            android:textColorHint="@color/black" />
 
         <ImageButton
             android:id="@+id/button_proceed"
