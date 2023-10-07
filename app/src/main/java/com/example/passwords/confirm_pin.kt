@@ -80,9 +80,5 @@ class confirm_pin : AppCompatActivity() {
 
         }
 
-
-
-
-
     }
 }
