@@ -14,6 +14,7 @@ class confirm_pin : AppCompatActivity() {
 
     lateinit var pin1 : EditText
     lateinit var proceed : ImageButton
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_confirm_pin)
@@ -77,12 +78,6 @@ class confirm_pin : AppCompatActivity() {
                 startActivity(intent)
                 finish()
             }
-
         }
-
-
-
-
-
     }
 }
