@@ -10,39 +10,39 @@ import java.io.File
 
 class set_password : AppCompatActivity() {
 
-    lateinit var pass : EditText
-    lateinit var passproceed : ImageButton
+    lateinit var password : EditText
+    lateinit var proceed : ImageButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_set_password)
 
-        pass = findViewById(R.id.edt_password)
-        passproceed = findViewById(R.id.button_proceed)
+        password = findViewById(R.id.edt_password)
+        proceed = findViewById(R.id.button_proceed)
 
-        val fileName3 = "passwords1.txt"
+        val fileName = "passwords1.txt"
         val storageDir = getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS)
-        val file3 = File(storageDir, fileName3)
+        val file = File(storageDir, fileName)
 
-        if(!file3.exists())
+        if(!file.exists())
         {
-            file3.createNewFile()
+            file.createNewFile()
         }
-        if(file3.readText().isEmpty())
+        if(file.readText().isEmpty())
         {
-            file3.delete()
-            file3.createNewFile()
+            file.delete()
+            file.createNewFile()
         }
 
-        if(file3.exists() && !file3.readText().isEmpty())
+        if(file.exists() && !file.readText().isEmpty())
         {
             val intent = Intent(this@set_password,confirm_password::class.java)
             startActivity(intent)
             finish()
         }
 
-        passproceed.setOnClickListener {
-            file3.writeText(pass.text.toString().trim())
+        proceed.setOnClickListener {
+            file.writeText(password.text.toString().trim())
             val intent = Intent(this@set_password,confirm_password::class.java)
             startActivity(intent)
             finish()

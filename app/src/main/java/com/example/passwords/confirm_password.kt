@@ -11,66 +11,66 @@ import java.io.File
 
 class confirm_password : AppCompatActivity() {
 
-    lateinit var pass1 : EditText
-    lateinit var passproceed2 : ImageButton
+    lateinit var password1 : EditText
+    lateinit var proceed : ImageButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_confirm_password)
 
-        pass1= findViewById(R.id.edt_password1)
-        passproceed2 = findViewById(R.id.button_proceed1)
+        password1= findViewById(R.id.edt_password1)
+        proceed = findViewById(R.id.button_proceed1)
 
-        val fileName4 = "passwords1.txt"
+        val fileName1 = "passwords1.txt"
         val storageDir = getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS)
-        val file4 = File(storageDir, fileName4)
+        val file1 = File(storageDir, fileName1)
 
-        if(!file4.exists())
+        if(!file1.exists())
         {
             val intent = Intent(this@confirm_password,set_password::class.java)
             startActivity(intent)
             finish()
         }
-        val fileName5 = "passwords_pass2.txt"
+        val fileName2 = "passwords2.txt"
         val storageDir1 = getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS)
-        val file5 = File(storageDir1, fileName5)
-        if(file5.exists())
+        val file2 = File(storageDir1, fileName2)
+        if(file2.exists())
         {
-            if(file4.readText().toString() == file5.readText().toString())
+            if(file1.readText().toString() == file2.readText().toString())
             {
                 val intent = Intent(this@confirm_password,home::class.java)
                 startActivity(intent)
                 finish()
             }
-            else if(file4.readText().toString() != file5.readText().toString())
+            else if(file1.readText().toString() != file2.readText().toString())
             {
-                file5.delete()
+                file2.delete()
             }
         }
-        if(!file5.exists())
+        if(!file2.exists())
         {
-            file5.createNewFile()
+            file2.createNewFile()
         }
-        if(file5.readText().isEmpty())
+        if(file2.readText().isEmpty())
         {
-            file5.delete()
-            file5.createNewFile()
+            file2.delete()
+            file2.createNewFile()
         }
-        passproceed2.setOnClickListener {
+        proceed.setOnClickListener {
 
-            file5.writeText(pass1.text.toString().trim())
-            if(file4.readText().toString() == file5.readText().toString())
+            file2.writeText(password1.text.toString().trim())
+            if(file1.readText().toString() == file2.readText().toString())
             {
                 val intent = Intent(this@confirm_password,home::class.java)
                 startActivity(intent)
                 Toast.makeText(this, "Password Set Successfully", Toast.LENGTH_SHORT).show()
                 finish()
             }
-            else if(file4.readText().toString() != file5.readText().toString())
+            else if(file1.readText().toString() != file2.readText().toString())
             {
                 Toast.makeText(this, "Password do not match", Toast.LENGTH_SHORT).show()
-                file5.delete()
-                file4.delete()
+                file2.delete()
+                file1.delete()
                 val intent = Intent(this@confirm_password,set_password::class.java)
                 startActivity(intent)
                 finish()
