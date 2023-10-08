@@ -1,6 +1,7 @@
 package com.example.passwords
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
@@ -51,6 +52,7 @@ class set_password : AppCompatActivity() {
             }else
             {
                 Toast.makeText(this, "Enter a password", Toast.LENGTH_SHORT).show()
+                pass.setHintTextColor(Color.RED)
             }
         }
     }
