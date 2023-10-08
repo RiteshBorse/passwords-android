@@ -1,12 +1,14 @@
 package com.example.passwords
 
 import android.content.Intent
+import android.graphics.Color
 import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.Toast
 import java.io.File
 
 class set_pin : AppCompatActivity() {
@@ -44,9 +46,18 @@ class set_pin : AppCompatActivity() {
 
         proceed.setOnClickListener {
             file.writeText(pin.text.toString().trim())
-            val intent = Intent(this@set_pin,confirm_pin::class.java)
-            startActivity(intent)
-            finish()
+            if(file.readText().isNotEmpty())
+            {
+                val intent = Intent(this@set_pin,confirm_pin::class.java)
+                startActivity(intent)
+                finish()
+            }
+            else
+            {
+                pin.setHintTextColor(Color.RED)
+                Toast.makeText(this,"Enter a Pin",Toast.LENGTH_SHORT).show()
+            }
+
         }
 
     }
