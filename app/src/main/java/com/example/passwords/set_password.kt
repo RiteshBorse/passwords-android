@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Environment
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.Toast
 import java.io.File
 
 class set_password : AppCompatActivity() {
@@ -43,9 +44,14 @@ class set_password : AppCompatActivity() {
 
         passproceed.setOnClickListener {
             file3.writeText(pass.text.toString().trim())
-            val intent = Intent(this@set_password,confirm_password::class.java)
-            startActivity(intent)
-            finish()
+            if(file3.readText().isNotEmpty()){
+                val intent = Intent(this@set_password,confirm_password::class.java)
+                startActivity(intent)
+                finish()
+            }else
+            {
+                Toast.makeText(this, "Enter a password", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }
