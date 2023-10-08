@@ -16,7 +16,7 @@
             android:name=".set_pin"
             android:exported="false"/>
         <activity
-            android:name=".addpassword"
+            android:name=".add_password"
             android:exported="false" />
         <activity
             android:name=".confirm_password"
