@@ -33,15 +33,15 @@
             android:paddingLeft="20dp"
             android:textColorHint="@color/black" />
 
+
         <ImageButton
             android:id="@+id/button_proceed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/edt_pin"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
             android:background="@drawable/proceed_button"
-            android:layout_marginTop="5dp"
-            android:src="@drawable/background"
             tools:ignore="SpeakableTextPresentCheck" />
 
 
