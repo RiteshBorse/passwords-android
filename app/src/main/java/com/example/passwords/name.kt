@@ -23,31 +23,52 @@ class name : AppCompatActivity() {
         val storageDir = getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS)
         val file = File(storageDir, fileName)
 
+        val fileName1 = "passwords_pin.txt"
+        val storageDir1 = getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS)
+        val file1 = File(storageDir1, fileName1)
 
+        val fileName2 = "passwords_pin1.txt"
+        val storageDir2 = getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS)
+        val file2 = File(storageDir2, fileName2)
 
-        if(!file.exists())
-        {
-            file.createNewFile()
-        }
-        if(file.readText().isEmpty())
-        {
-            file.delete()
-            file.createNewFile()
-        }
+        val fileName3 = "passwords1.txt"
+        val storageDir3 = getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS)
+        val file3 = File(storageDir3, fileName3)
 
-        if(file.exists() && !file.readText().isEmpty())
+        val fileName4 = "passwords_pass2.txt"
+        val storageDir4 = getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS)
+        val file4 = File(storageDir4, fileName4)
+
+        if(file.exists() && file1.exists() && file2.exists() && file3.exists() && file4.exists())
         {
-            val intent = Intent(this@name,set_pin::class.java)
+            val intent = Intent(this@name,check_pin::class.java)
             startActivity(intent)
             finish()
         }
+        else {
 
-        proceed.setOnClickListener {
-            file.writeText(name.text.toString().trim())
-            val intent = Intent(this@name,set_pin::class.java)
-            startActivity(intent)
-            finish()
+            if (!file.exists()) {
+                file.createNewFile()
+            }
+            if (file.readText().isEmpty()) {
+                file.delete()
+                file.createNewFile()
+            }
+
+            if (file.exists() && !file.readText().isEmpty()) {
+                val intent = Intent(this@name, set_pin::class.java)
+                startActivity(intent)
+                finish()
+            }
+
+            proceed.setOnClickListener {
+                file.writeText(name.text.toString().trim())
+                val intent = Intent(this@name, set_pin::class.java)
+                startActivity(intent)
+                finish()
+            }
         }
 
     }
+
 }

@@ -52,11 +52,7 @@ class set_password : AppCompatActivity() {
             }else
             {
                 Toast.makeText(this, "Enter a password", Toast.LENGTH_SHORT).show()
-<<<<<<< HEAD
                 pass.setHintTextColor(Color.RED)
-=======
-
->>>>>>> kaveri
             }
         }
     }
