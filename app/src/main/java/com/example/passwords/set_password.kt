@@ -45,6 +45,48 @@ class set_password : AppCompatActivity() {
 
         passproceed.setOnClickListener {
             file3.writeText(pass.text.toString().trim())
+            var password = file3.readText()
+
+            if (password.isEmpty()) {
+                Toast.makeText(this, "Enter a password", Toast.LENGTH_SHORT).show()
+                pass.setHintTextColor(Color.RED)
+                return@setOnClickListener
+            }
+
+            if (password.length < 8) {
+                Toast.makeText(this, "Password should contain at least 8 characters", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            var hasUpperCase = false
+            var hasLowerCase = false
+            var hasSpecialChar = false
+
+            for (char in password) {
+                if (char.isUpperCase()) {
+                    hasUpperCase = true
+                } else if (char.isLowerCase()) {
+                    hasLowerCase = true
+                } else if (!char.isLetterOrDigit()) {
+                    hasSpecialChar = true
+                }
+            }
+
+            if (!hasUpperCase) {
+                Toast.makeText(this, "At least 1 character needs to be UpperCase", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            if (!hasLowerCase) {
+                Toast.makeText(this, "At least 1 character needs to be LowerCase", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            if (!hasSpecialChar) {
+                Toast.makeText(this, "Password must contain at least 1 special character", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
             if(file3.readText().isNotEmpty()){
                 val intent = Intent(this@set_password,confirm_password::class.java)
                 startActivity(intent)
@@ -56,4 +98,8 @@ class set_password : AppCompatActivity() {
             }
         }
     }
+    fun isLettersOrDigits(temp: String): Boolean {
+        return temp.all { it.isLetterOrDigit() }
+    }
+
 }
