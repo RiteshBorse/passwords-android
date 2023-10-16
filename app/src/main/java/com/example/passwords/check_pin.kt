@@ -103,6 +103,7 @@ class check_pin : AppCompatActivity() {
 
                 val intent = Intent(this@check_pin,name::class.java)
                 startActivity(intent)
+                finish()
 
 
             })

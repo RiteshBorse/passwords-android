@@ -94,6 +94,7 @@ class check_password : AppCompatActivity() {
 
                     val intent = Intent(this@check_password, name::class.java)
                     startActivity(intent)
+                    finish()
 
 
                 })
