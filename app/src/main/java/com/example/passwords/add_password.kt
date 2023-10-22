@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
+import com.example.passwords.DB_Passwords.MyDatabaseHelper
+import com.example.passwords.DB_Passwords.Password
 
 class add_password : AppCompatActivity() {
     lateinit var name : EditText
@@ -50,6 +52,9 @@ class add_password : AppCompatActivity() {
                 }
                 else if(password.text.toString().trim() == password1.text.toString().trim())
                 {
+                    val passwords = Password(0,name.text.toString(), username.text.toString(),password.text.toString())
+                    val dbHelper = MyDatabaseHelper(this)
+                    dbHelper.insertPassword(passwords)
                     Toast.makeText(this, "Password Saved Successfully", Toast.LENGTH_SHORT).show()
                     val intent = Intent(this@add_password,home::class.java)
                     startActivity(intent)
@@ -60,4 +65,6 @@ class add_password : AppCompatActivity() {
 
 
     }
+
+
 }
