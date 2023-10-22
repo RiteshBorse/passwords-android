@@ -10,6 +10,7 @@ import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import com.example.passwords.DB_Passwords.MyDatabaseHelper
 import org.w3c.dom.Text
 import java.io.File
 
@@ -91,6 +92,10 @@ class check_password : AppCompatActivity() {
                         file.delete()
                     }
 
+                    val dbHelper = MyDatabaseHelper(this)
+                    dbHelper.deleteAllPasswords()
+                    dbHelper.close()
+                    Toast.makeText(this, "All DataBase Cleared", Toast.LENGTH_SHORT).show()
 
                     val intent = Intent(this@check_password, name::class.java)
                     startActivity(intent)
