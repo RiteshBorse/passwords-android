@@ -1,5 +1,6 @@
 package com.example.passwords
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,5 +23,12 @@ class save_password1 : AppCompatActivity() {
         val adapter = MyAdapter(savedPass)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
+         adapter.onItemClick = {password ->
+             val intent = Intent(this,save_password2::class.java)
+             intent.putExtra("text_platform",password.platform)
+             intent.putExtra("text_username",password.username)
+             intent.putExtra("text_password",password.password)
+             startActivity(intent)
+         }
     }
 }
