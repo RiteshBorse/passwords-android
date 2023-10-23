@@ -62,10 +62,10 @@ class MyDatabaseHelper(context: Context) : SQLiteOpenHelper(context,DATABASE_NAM
         db.update("all_passwords",values,"id=?", arrayOf(passwords.id.toString()))
         db.close()
     }
-    fun deletePassword(id : Int)
+    fun deletePassword(platform : String)
     {
         val db = this.writableDatabase
-        db.delete("all_passwords","id=?", arrayOf(id.toString()))
+        db.delete("all_passwords","id=?", arrayOf(platform.toString()))
         db.close()
     }
 

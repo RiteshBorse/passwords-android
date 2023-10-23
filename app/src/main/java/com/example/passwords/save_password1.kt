@@ -18,6 +18,7 @@ class save_password1 : AppCompatActivity() {
         setContentView(R.layout.activity_savepassword1)
         recyclerView = findViewById(R.id.recyclerView)
 
+
       val dbHelper = MyDatabaseHelper(this)
         val savedPass = dbHelper.getAllPassword()
         val adapter = MyAdapter(savedPass)
@@ -30,5 +31,6 @@ class save_password1 : AppCompatActivity() {
              intent.putExtra("text_password",password.password)
              startActivity(intent)
          }
+        adapter.notifyDataSetChanged()
     }
 }
