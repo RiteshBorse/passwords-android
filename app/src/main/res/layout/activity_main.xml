@@ -81,7 +81,8 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="100dp"
-        android:src="@drawable/about"
+        android:background="@drawable/about"
+        android:src="@drawable/background"
         tools:ignore="SpeakableTextPresentCheck" />
 
 </RelativeLayout>
