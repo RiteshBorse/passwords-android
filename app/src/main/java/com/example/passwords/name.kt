@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Environment
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.Toast
 import java.io.File
 
 class name : AppCompatActivity() {
@@ -62,6 +63,11 @@ class name : AppCompatActivity() {
             }
 
             proceed.setOnClickListener {
+                if(name.text.isEmpty())
+                {
+                    Toast.makeText(this, "Enter the Name", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
                 file.writeText(name.text.toString().trim())
                 val intent = Intent(this@name, set_pin::class.java)
                 startActivity(intent)
