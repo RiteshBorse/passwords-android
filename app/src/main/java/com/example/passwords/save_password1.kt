@@ -30,6 +30,7 @@ class save_password1 : AppCompatActivity() {
              intent.putExtra("text_username",password.username)
              intent.putExtra("text_password",password.password)
              startActivity(intent)
+             finish()
          }
         adapter.notifyDataSetChanged()
     }

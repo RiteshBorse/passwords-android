@@ -21,15 +21,10 @@ class update_password : AppCompatActivity() {
         password1 = findViewById(R.id.password1)
         proceed = findViewById(R.id.button_proceed)
 
-        var platform = intent.getStringExtra("plat")
-        var username = intent.getStringExtra("user")
-        var oldpassword = intent.getStringExtra("pass")
+        val platform = intent.getStringExtra("platform")
+        val username = intent.getStringExtra("username")
+        val oldpassword = intent.getStringExtra("password")
 
-
-        Toast.makeText(this, "Function Under Maintenance", Toast.LENGTH_LONG).show()
-        val intent = Intent(this,save_password1::class.java)
-        startActivity(intent)
-        finish()
         proceed.setOnClickListener {
             if(password.text.toString().isEmpty())
             {
@@ -49,7 +44,9 @@ class update_password : AppCompatActivity() {
             else if(password.text.toString().trim() == password1.text.toString().trim())
             {
                 val newPassword = password.text.toString().trim()
-                Toast.makeText(this, "Function Under Maintenance", Toast.LENGTH_SHORT).show()
+                val dbHelper = MyDatabaseHelper(this)
+                dbHelper.deletePassword(platform.toString())
+                Toast.makeText(this, "Password Deleted", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this,save_password1::class.java)
                 startActivity(intent)
                 finish()
