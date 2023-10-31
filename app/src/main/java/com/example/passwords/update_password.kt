@@ -1,14 +1,12 @@
 package com.example.passwords
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.passwords.DB_Passwords.MyDatabaseHelper
-import com.example.passwords.DB_Passwords.Password
-import com.example.passwords.View_Passwords.MyAdapter
 
 class update_password : AppCompatActivity() {
     lateinit var password : EditText
@@ -41,17 +39,22 @@ class update_password : AppCompatActivity() {
                 Toast.makeText(this, "Password does not match", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-            else if(password.text.toString().trim() == password1.text.toString().trim())
+            else if(password.text.toString().trim() == password1.text.toString().trim() && oldpassword.toString() == password1.text.toString())
             {
-                val newPassword = password.text.toString().trim()
                 val dbHelper = MyDatabaseHelper(this)
                 dbHelper.deletePassword(platform.toString())
                 Toast.makeText(this, "Password Deleted", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this,save_password1::class.java)
+                val intent = Intent(this,home::class.java)
                 startActivity(intent)
-                finish()
+                finishAffinity()
 
             }
         }
+    }
+    override fun onBackPressed() {
+        super.onBackPressed()
+
+        // Finish the current activity and return to the previous activity
+        finish()
     }
 }

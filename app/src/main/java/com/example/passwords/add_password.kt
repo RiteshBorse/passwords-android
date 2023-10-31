@@ -1,11 +1,11 @@
 package com.example.passwords
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.passwords.DB_Passwords.MyDatabaseHelper
 import com.example.passwords.DB_Passwords.Password
 
@@ -64,6 +64,12 @@ class add_password : AppCompatActivity() {
         }
 
 
+    }
+    override fun onBackPressed() {
+        super.onBackPressed()
+
+        // Finish the current activity and return to the previous activity
+        finish()
     }
 
 

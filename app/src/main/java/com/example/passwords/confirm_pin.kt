@@ -22,6 +22,9 @@ class confirm_pin : AppCompatActivity() {
         pin1 = findViewById(R.id.edt_pin1)
         proceed = findViewById(R.id.button_proceed)
 
+        val modulus = 10007
+        val key = 7
+
         val fileName = "passwords_pin.txt"
         val storageDir = getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS)
         val file = File(storageDir, fileName)
@@ -79,5 +82,26 @@ class confirm_pin : AppCompatActivity() {
                 finish()
             }
         }
+    }
+    fun encrypt(message: String, modulus: Int, key: Int): Int {
+        var messageNumber = 0
+        for (character in message) {
+            messageNumber += character.code
+        }
+
+        val encryptedMessage = messageNumber * key % modulus
+        return encryptedMessage
+    }
+
+    fun decrypt(encryptedMessage: Int, modulus: Int, key: Int): String {
+        var decryptedMessageNumber = encryptedMessage / key % modulus
+
+        var decryptedMessage = ""
+        for (i in 0 until decryptedMessageNumber) {
+            decryptedMessage += (decryptedMessageNumber % 10).toChar()
+            decryptedMessageNumber /= 10
+        }
+
+        return decryptedMessage.reversed()
     }
 }

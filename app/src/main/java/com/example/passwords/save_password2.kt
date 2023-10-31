@@ -1,10 +1,9 @@
 package com.example.passwords
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
-import com.example.passwords.DB_Passwords.Password
+import androidx.appcompat.app.AppCompatActivity
 
 class save_password2 : AppCompatActivity() {
     lateinit var platform: TextView
@@ -36,5 +35,11 @@ class save_password2 : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+    }
+    override fun onBackPressed() {
+        super.onBackPressed()
+
+        // Finish the current activity and return to the previous activity
+        finish()
     }
 }
