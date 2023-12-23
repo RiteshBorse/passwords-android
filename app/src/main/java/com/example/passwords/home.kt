@@ -26,9 +26,6 @@ class home : AppCompatActivity() {
             val intent = Intent(this@home,save_password1::class.java)
             startActivity(intent)
         }
-        about.setOnClickListener{
-            val intent = Intent(this@home,about::class.java)
-            startActivity(intent)
-        }
+
     }
 }
