@@ -57,7 +57,7 @@ class check_password : AppCompatActivity() {
         alertDialog.setTitle("Forget Pin")
             .setMessage(
                 "Caution : All the data of the user will be erased" +
-                        " Do u want to continue"
+                        " Do you want to continue"
             )
             .setPositiveButton("Yes", DialogInterface.OnClickListener { dialogInterface, which ->
 
