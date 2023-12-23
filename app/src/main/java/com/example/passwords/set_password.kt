@@ -9,6 +9,9 @@ import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
 import java.io.File
+import androidx.activity.BackEventCompat
+import java.nio.charset.Charset
+import java.util.Base64
 
 class set_password : AppCompatActivity() {
 
@@ -44,7 +47,7 @@ class set_password : AppCompatActivity() {
         }
 
         passproceed.setOnClickListener {
-            file3.writeText(pass.text.toString().trim())
+            file3.writeText(encode(pass.text.toString().trim()))
             var password = file3.readText()
 
             if (password.isEmpty()) {
@@ -101,5 +104,14 @@ class set_password : AppCompatActivity() {
     fun isLettersOrDigits(temp: String): Boolean {
         return temp.all { it.isLetterOrDigit() }
     }
+    fun encode(text : String) : String
+    {
+        return Base64.getEncoder().encodeToString(text.toByteArray(Charsets.UTF_8))
+    }
+    fun decode(text : String) : String
+    {
+        return String(Base64.getDecoder().decode(text), Charsets.UTF_8)
+    }
+
 
 }
