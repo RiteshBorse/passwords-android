@@ -8,6 +8,10 @@ import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
 import java.io.File
+import java.util.Base64
+import androidx.activity.BackEventCompat
+import java.nio.charset.Charset
+import java.util.Base64
 
 class confirm_password : AppCompatActivity() {
 
@@ -58,7 +62,7 @@ class confirm_password : AppCompatActivity() {
         }
         passproceed2.setOnClickListener {
 
-            file5.writeText(pass1.text.toString().trim())
+            file5.writeText(encode(pass1.text.toString().trim()))
             if(file4.readText().toString() == file5.readText().toString())
             {
                 val intent = Intent(this@confirm_password,home::class.java)
@@ -77,4 +81,13 @@ class confirm_password : AppCompatActivity() {
             }
         }
     }
+    fun encode(text : String) : String
+    {
+        return Base64.getEncoder().encodeToString(text.toByteArray(Charsets.UTF_8))
+    }
+    fun decode(text : String) : String
+    {
+        return String(Base64.getDecoder().decode(text), Charsets.UTF_8)
+    }
+
 }
