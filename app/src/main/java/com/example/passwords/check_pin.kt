@@ -12,6 +12,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.passwords.DB_Passwords.MyDatabaseHelper
 import java.io.File
+import androidx.activity.BackEventCompat
+import java.nio.charset.Charset
+import java.util.Base64
 
 class check_pin : AppCompatActivity() {
     lateinit var pin : EditText
@@ -36,7 +39,7 @@ class check_pin : AppCompatActivity() {
         }
 
         proceed.setOnClickListener {
-            if(pin.text.toString().trim() == file.readText().toString())
+            if(pin.text.toString().trim() == decode(file.readText().toString()))
             {
                 val intent = Intent(this@check_pin,check_password::class.java)
                 startActivity(intent)
@@ -112,4 +115,13 @@ class check_pin : AppCompatActivity() {
             })
             .show()
     }
+    fun encode(text : String) : String
+    {
+        return Base64.getEncoder().encodeToString(text.toByteArray(Charsets.UTF_8))
+    }
+    fun decode(text : String) : String
+    {
+        return String(Base64.getDecoder().decode(text), Charsets.UTF_8)
+    }
+
 }

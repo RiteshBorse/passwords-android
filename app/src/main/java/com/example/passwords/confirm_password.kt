@@ -8,7 +8,6 @@ import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
 import java.io.File
-import java.util.Base64
 import androidx.activity.BackEventCompat
 import java.nio.charset.Charset
 import java.util.Base64
