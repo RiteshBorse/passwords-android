@@ -9,6 +9,9 @@ import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
 import java.io.File
+import java.util.Base64
+import androidx.activity.BackEventCompat
+import java.nio.charset.Charset
 
 class confirm_pin : AppCompatActivity() {
 
@@ -21,9 +24,6 @@ class confirm_pin : AppCompatActivity() {
 
         pin1 = findViewById(R.id.edt_pin1)
         proceed = findViewById(R.id.button_proceed)
-
-        val modulus = 10007
-        val key = 7
 
         val fileName = "passwords_pin.txt"
         val storageDir = getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS)
@@ -64,7 +64,7 @@ class confirm_pin : AppCompatActivity() {
         }
         proceed.setOnClickListener {
 
-            file1.writeText(pin1.text.toString().trim())
+            file1.writeText(encode(pin1.text.toString().trim()))
             if(file.readText().toString() == file1.readText().toString())
             {
                 val intent = Intent(this@confirm_pin,set_password::class.java)
@@ -83,25 +83,13 @@ class confirm_pin : AppCompatActivity() {
             }
         }
     }
-    fun encrypt(message: String, modulus: Int, key: Int): Int {
-        var messageNumber = 0
-        for (character in message) {
-            messageNumber += character.code
-        }
-
-        val encryptedMessage = messageNumber * key % modulus
-        return encryptedMessage
+    fun encode(text : String) : String
+    {
+        return Base64.getEncoder().encodeToString(text.toByteArray(Charsets.UTF_8))
+    }
+    fun decode(text : String) : String
+    {
+        return String(Base64.getDecoder().decode(text), Charsets.UTF_8)
     }
 
-    fun decrypt(encryptedMessage: Int, modulus: Int, key: Int): String {
-        var decryptedMessageNumber = encryptedMessage / key % modulus
-
-        var decryptedMessage = ""
-        for (i in 0 until decryptedMessageNumber) {
-            decryptedMessage += (decryptedMessageNumber % 10).toChar()
-            decryptedMessageNumber /= 10
-        }
-
-        return decryptedMessage.reversed()
-    }
 }
