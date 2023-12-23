@@ -13,6 +13,9 @@ import androidx.appcompat.app.AlertDialog
 import com.example.passwords.DB_Passwords.MyDatabaseHelper
 import org.w3c.dom.Text
 import java.io.File
+import androidx.activity.BackEventCompat
+import java.nio.charset.Charset
+import java.util.Base64
 
 class check_password : AppCompatActivity() {
     lateinit var password: EditText
@@ -34,7 +37,7 @@ class check_password : AppCompatActivity() {
             startActivity(intent)
         }
         proceed.setOnClickListener {
-            if (password.text.toString().trim() == file.readText().toString()) {
+            if (password.text.toString().trim() == decode(file.readText().toString())) {
                 val intent = Intent(this@check_password, home::class.java)
                 startActivity(intent)
                 finish()
@@ -105,4 +108,13 @@ class check_password : AppCompatActivity() {
                 })
             .show()
     }
+    fun encode(text : String) : String
+    {
+        return Base64.getEncoder().encodeToString(text.toByteArray(Charsets.UTF_8))
+    }
+    fun decode(text : String) : String
+    {
+        return String(Base64.getDecoder().decode(text), Charsets.UTF_8)
+    }
+
 }
